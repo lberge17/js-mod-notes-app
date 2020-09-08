@@ -5,7 +5,7 @@ class NotesController < ApplicationController
   def index
     @notes = Note.all
 
-    render json: @notes
+    render json: @notes.to_json(except: [:created_at,:updated_at])
   end
 
   # GET /notes/1
@@ -36,6 +36,8 @@ class NotesController < ApplicationController
   # DELETE /notes/1
   def destroy
     @note.destroy
+
+    render json: @note
   end
 
   private
